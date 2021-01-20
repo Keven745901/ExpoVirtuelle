@@ -13,10 +13,17 @@
       </a-assets>
       
       <a-gltf-model position="0 0 -14" rotation="0 0 0" scale = "0.01 0.01 0.01" src="assets/venus_de_milo.glb"></a-gltf-model>
+      <a-gltf-model position="-6 1.8 -14.3" rotation="0 0 0"  src="assets/anubis.glb" scale = "0.19 0.19 0.19"></a-gltf-model>
 
-      <a-plane position="0 2.7 -14" rotation="0 0 0" scale="2.75 1 1" color="black">
-        <a-text value="Venus de milo" align="center" width="2" color="white"></a-text>
-      </a-plane>    
+      <div style="visibility:hidden;">
+        <a-plane position="0 2.8 -14" rotation="0 0 0" scale="2.75 1 1" color="black">
+          <a-text value="Venus de milo" align="center" width="2" color="white"></a-text>
+        </a-plane>
+        <a-plane position="-6 2.8 -14.3" rotation="0 0 0" scale="2.75 1 1" color="black">
+          <a-text value="Anubis" align="center" width="2" color="white"></a-text>
+        </a-plane>    
+      </div>
+      
 
 
       <a-plane position="0 0 0" rotation="-90 0 0" src="#sol" scale = "30 30 30" repeat="20 20"></a-plane>
