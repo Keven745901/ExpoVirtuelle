@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"> </script>
+    <script>
+        let xmlContent = '';
+        fetch('dessin.svg').then((response)=> {
+            response.text().then((xml)=>{
+                xmlContent = xml;
+
+                let parser = new DOMParser();
+                let xmlDOM = parser.parseFromString(xmlContent, 'application/xml');
+                let coordonneesBrutes = xmlDOM.getElementsByTagName("g")[0].getElementsByTagName("path")[0].getAttribute("d").replace(/[a-z]/gi, '') ;
+                let coord = [];
+                console.log({coordonneesBrutes});
+                coordonneesBrutes.split(" ").forEach(el => {
+                    coord.push({
+                        x: el.split(",")[0],
+                        z: el.split(",")[1]
+                    })
+                });
+                coord.splice(0,1);
+                coord.splice(coord.length-1,1);
+
+                console.log({coord});
+                coord.forEach(mur => {
+                    let box = document.createElement("a-box");
+                    box.setAttribute("color", "red");
+                    box.setAttribute("width",  mur.x);
+                    box.setAttribute("depth", "0.5");
+                    box.setAttribute("height", "4");
+                    box.setAttribute("position", mur.x + " 0 " + mur.z);
+                
+                    document.getElementById("scene").appendChild(box);
+                });
+                
+            });
+        }); 
+    </script>
+</head>
+<body>
+    
+    <a-scene id="scene">
+
+    </a-scene>
+</body>
+</html>
