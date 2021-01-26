@@ -19,10 +19,16 @@
 
     function GenererExpo(){
         let scene = document.querySelector("#scene");
+        
+        //permet de supprimer toutes les box de la scène
+        while(scene.childNodes.length > 8){
+            scene.removeChild(scene.childNodes[scene.childNodes.length-1]);
+        }
 
         let box;
         listeCoordonnees.forEach(element => {
             box = document.createElement("a-box");
+            box.setAttribute("id", listeCoordonnees.indexOf(element));
             box.setAttribute("position", {
                 x: element.x,
                 y: 0,
@@ -32,6 +38,7 @@
             box.setAttribute("color", "red");
             scene.appendChild(box);
         });
+        
     }
 
     function MajListe(lst,x,z){
@@ -45,6 +52,7 @@
                 }
             });
             if(!contenu){
+                event.target.style.backgroundColor = "red";
                 lst.push({
                     x: x,
                     z: z
@@ -57,7 +65,6 @@
         if(event.target.cellIndex !== undefined && event.target.parentElement.rowIndex !== undefined){
             let x = event.target.cellIndex;
             let z = event.target.parentElement.rowIndex;
-            event.target.style.backgroundColor = "red";
             MajListe(listeCoordonnees,x,z);
         }    
     }
