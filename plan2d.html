@@ -5,46 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"> </script>
-    <script>
-        let xmlContent = '';
-        fetch('dessin.svg').then((response)=> {
-            response.text().then((xml)=>{
-                xmlContent = xml;
-
-                let parser = new DOMParser();
-                let xmlDOM = parser.parseFromString(xmlContent, 'application/xml');
-                let coordonneesBrutes = xmlDOM.getElementsByTagName("g")[0].getElementsByTagName("path")[0].getAttribute("d").replace(/[a-z]/gi, '') ;
-                let coord = [];
-                console.log({coordonneesBrutes});
-                coordonneesBrutes.split(" ").forEach(el => {
-                    coord.push({
-                        x: el.split(",")[0],
-                        z: el.split(",")[1]
-                    })
-                });
-                coord.splice(0,1);
-                coord.splice(coord.length-1,1);
-
-                console.log({coord});
-                coord.forEach(mur => {
-                    let box = document.createElement("a-box");
-                    box.setAttribute("color", "red");
-                    box.setAttribute("width",  mur.x);
-                    box.setAttribute("depth", "0.5");
-                    box.setAttribute("height", "4");
-                    box.setAttribute("position", mur.x + " 0 " + mur.z);
-                
-                    document.getElementById("scene").appendChild(box);
-                });
-                
-            });
-        }); 
-    </script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
 </head>
-<body>
-    
-    <a-scene id="scene">
+<script>
+    let listeCoordonnees = [];
+    window.onload = function () {
+        
+        GenererTableau();
+        document.querySelector("#table").onclick = GetCoordonnees;
+        document.querySelector("#btngenerer").onclick = GenererExpo;
 
-    </a-scene>
+    }
+
+    function GenererExpo(){
+        let scene = document.querySelector("#scene");
+        scene.childNodes.forEach(node => {
+            console.log(node.tagName);
+            if(node.tagName === "A-BOX"){
+                scene.removeChild(node);
+            }
+        });
+        let box;
+        listeCoordonnees.forEach(element => {
+            box = document.createElement("a-box");
+            box.setAttribute("position", {
+                x: element.x,
+                y: 0,
+                z: element.z
+            });
+            box.setAttribute("height", "4");
+            box.setAttribute("color", "red");
+            scene.appendChild(box);
+        });
+    }
+
+    function MajListe(lst,x,z){
+        if(lst !== undefined){
+            let contenu = false;
+            lst.forEach(element => {
+                if(element.x === x && element.z === z){
+                    lst.splice(lst.indexOf(element),1);
+                    contenu = true;
+                    event.target.style.backgroundColor = "white";
+                }
+            });
+            if(!contenu){
+                lst.push({
+                    x: x,
+                    z: z
+                });
+            }
+        }
+    }
+
+    function GetCoordonnees(event){
+        if(event.target.cellIndex !== undefined && event.target.parentElement.rowIndex !== undefined){
+            let x = event.target.cellIndex;
+            let z = event.target.parentElement.rowIndex;
+            event.target.style.backgroundColor = "red";
+            MajListe(listeCoordonnees,x,z);
+        }    
+    }
+
+
+    function GenererTableau(){
+        let tableau = document.querySelector("#table");
+        let row;
+        let d;
+        for(let i=0; i<10; i++){
+            row = document.createElement("tr");
+            tableau.appendChild(row);
+            for(let j=0; j<10; j++){
+                d = document.createElement("td");
+                row.appendChild(d);
+            }
+        }
+    }
+    
+</script>
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    
+    td{
+        border: 1px solid rgb(173, 173, 173);
+        width: 25px;
+        height: 25px;
+    }
+
+    a-scene{
+        width: 900px;
+        height: 600px;
+        border: 1px solid black;
+    }
+
+</style>
+<body>
+    <table id="table">
+        
+    </table>
+    <br />
+    <input type="button" value="Générer" id="btngenerer">
+    <div>
+        <a-scene id="scene" embedded>
+            <a-entity camera look-controls wasd-controls="acceleration: 500" position="0 10 0"></a-entity>
+        </a-scene>
+    </div>
 </body>
 </html>
