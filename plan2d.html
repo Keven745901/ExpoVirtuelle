@@ -9,12 +9,16 @@
 </head>
 <script>
     let listeCoordonnees = [];
+    let gomme = false;
     window.onload = function () {
         
         GenererTableau();
         document.querySelector("#table").onmouseover = GetCoordonnees;
         document.querySelector("#table").onmousedown = GetCoordonnees;
         
+        document.querySelector("#chkgomme").onclick = function(event) {
+            event.target.checked ? gomme = true : gomme = false;
+        };
         document.querySelector("#btngenerer").onclick = GenererExpo;
 
     }
@@ -54,12 +58,14 @@
             let contenu = false;
             lst.forEach(element => {
                 if(element.x === x && element.z === z){
-                    lst.splice(lst.indexOf(element),1);
                     contenu = true;
-                    event.target.style.backgroundColor = "white";
+                    if(gomme){
+                        lst.splice(lst.indexOf(element),1);
+                        event.target.style.backgroundColor = "white";
+                    }
                 }
             });
-            if(!contenu){
+            if(!contenu && !gomme){
                 event.target.style.backgroundColor = "red";
                 lst.push({
                     x: x,
@@ -84,10 +90,10 @@
         let tableau = document.querySelector("#table");
         let row;
         let d;
-        for(let i=0; i<10; i++){
+        for(let i=0; i<20; i++){
             row = document.createElement("tr");
             tableau.appendChild(row);
-            for(let j=0; j<10; j++){
+            for(let j=0; j<50; j++){
                 d = document.createElement("td");
                 row.appendChild(d);
             }
@@ -113,8 +119,8 @@
     }
 
     a-scene{
-        width: 900px;
-        height: 600px;
+        width: 600px;
+        height: 400px;
         border: 1px solid black;
     }
 
@@ -123,11 +129,13 @@
     <table id="table">
         
     </table>
+    <label for="chkgomme">Gomme</label>
+    <input type="checkbox" id="chkgomme">
     <br />
     <input type="button" value="Générer" id="btngenerer">
     <div>
         <a-scene id="scene" embedded>
-            <a-entity camera look-controls wasd-controls="acceleration: 500" position="0 3 0"></a-entity>
+            <a-entity camera look-controls wasd-controls="acceleration: 500" position="0 5 0"></a-entity>
         </a-scene>
     </div>
 </body>
