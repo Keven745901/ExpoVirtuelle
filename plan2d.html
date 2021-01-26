@@ -42,7 +42,44 @@
         }
 
         let box;
+        let maxelement=listeCoordonnees[0];
+        let minelement=listeCoordonnees[0];
+
         listeCoordonnees.forEach(element => {
+            if(maxelement.z === element.z)
+            {
+                if(maxelement.x < element.x)
+                {
+                    maxelement=element;
+                }
+                if(minelement.x > element.x)
+                {
+                    minelement=element;
+                }
+            }
+
+        });
+        maxelement.x=maxelement.x+1;
+        box = document.createElement("a-box");
+            box.setAttribute("id", 1);
+            box.setAttribute("position", {
+                x: minelement.x,
+                y: 0,
+                z: minelement.z
+        });
+        let murx=(maxelement.x - minelement.x);
+        console.log(murx);
+        box.setAttribute("width", murx)
+        box.setAttribute("height", "4");
+        box.setAttribute("color", "red");
+        scene.appendChild(box);
+
+        console.log("max x : " + maxelement.x);
+        console.log("max y : " + maxelement.z);
+        console.log("min x : " + minelement.x);
+        console.log("min y : " + minelement.z);
+        
+        /*listeCoordonnees.forEach(element => {
             box = document.createElement("a-box");
             box.setAttribute("id", listeCoordonnees.indexOf(element));
             box.setAttribute("position", {
@@ -53,7 +90,7 @@
             box.setAttribute("height", "4");
             box.setAttribute("color", "red");
             scene.appendChild(box);
-        });
+        });*/
         
     }
 
@@ -96,10 +133,10 @@
         tableau.innerHTML = "";
         let row;
         let d;
-        for(let i=0; i<25; i++){
+        for(let i=0; i<15; i++){
             row = document.createElement("tr");
             tableau.appendChild(row);
-            for(let j=0; j<50; j++){
+            for(let j=0; j<15; j++){
                 d = document.createElement("td");
                 row.appendChild(d);
             }
