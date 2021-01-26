@@ -19,6 +19,10 @@
         document.querySelector("#chkgomme").onclick = function(event) {
             event.target.checked ? gomme = true : gomme = false;
         };
+        document.querySelector("#btnvider").onclick = function(){
+            listeCoordonnees = [];
+            GenererTableau();
+        };
         document.querySelector("#btngenerer").onclick = GenererExpo;
 
     }
@@ -54,18 +58,19 @@
     }
 
     function MajListe(lst,x,z){
+        console.log(event)
         if(lst !== undefined){
             let contenu = false;
             lst.forEach(element => {
                 if(element.x === x && element.z === z){
                     contenu = true;
-                    if(gomme){
+                    if(gomme || event.altKey){
                         lst.splice(lst.indexOf(element),1);
                         event.target.style.backgroundColor = "white";
                     }
                 }
             });
-            if(!contenu && !gomme){
+            if(!contenu && !gomme && !event.altKey){
                 event.target.style.backgroundColor = "red";
                 lst.push({
                     x: x,
@@ -88,9 +93,10 @@
 
     function GenererTableau(){
         let tableau = document.querySelector("#table");
+        tableau.innerHTML = "";
         let row;
         let d;
-        for(let i=0; i<20; i++){
+        for(let i=0; i<25; i++){
             row = document.createElement("tr");
             tableau.appendChild(row);
             for(let j=0; j<50; j++){
@@ -129,10 +135,15 @@
     <table id="table">
         
     </table>
+    <br />
     <label for="chkgomme">Gomme</label>
     <input type="checkbox" id="chkgomme">
-    <br />
+    (ou maintenir Alt)
+    <br /><br />
+    <input type="button" style="color: red" value="Vider" id="btnvider">
+    <br /><br />
     <input type="button" value="Générer" id="btngenerer">
+    <br /><br />
     <div>
         <a-scene id="scene" embedded>
             <a-entity camera look-controls wasd-controls="acceleration: 500" position="0 5 0"></a-entity>
