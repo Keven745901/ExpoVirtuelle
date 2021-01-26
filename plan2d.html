@@ -19,12 +19,7 @@
 
     function GenererExpo(){
         let scene = document.querySelector("#scene");
-        scene.childNodes.forEach(node => {
-            console.log(node.tagName);
-            if(node.tagName === "A-BOX"){
-                scene.removeChild(node);
-            }
-        });
+
         let box;
         listeCoordonnees.forEach(element => {
             box = document.createElement("a-box");
