@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"> </script>
-    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 </head>
 <script>
     let listeCoordonnees = [];
     let gomme = false;
+    let porte = false;
     window.onload = function () {
         
         GenererTableau();
@@ -17,7 +18,25 @@
         document.querySelector("#table").onmousedown = GetCoordonnees;
         
         document.querySelector("#chkgomme").onclick = function(event) {
-            event.target.checked ? gomme = true : gomme = false;
+            if(event.target.checked){
+                gomme = true;
+                porte = false;
+                document.querySelector("#chkporte").checked = false;
+            }
+            else{
+                gomme = false;
+            } 
+        };
+
+        document.querySelector("#chkporte").onclick = function(event) {
+            if(event.target.checked){
+                porte = true;
+                gomme = false;
+                document.querySelector("#chkgomme").checked = false;
+            }
+            else{
+                porte = false;
+            } 
         };
         document.querySelector("#btnvider").onclick = function(){
             listeCoordonnees = [];
@@ -42,6 +61,8 @@
         }
 
         let box;
+        //version Kévin
+        /* 
         let maxelement=listeCoordonnees[0];
         let minelement=listeCoordonnees[0];
 
@@ -78,19 +99,25 @@
         console.log("max y : " + maxelement.z);
         console.log("min x : " + minelement.x);
         console.log("min y : " + minelement.z);
+        */
         
-        /*listeCoordonnees.forEach(element => {
+        listeCoordonnees.forEach(element => {
             box = document.createElement("a-box");
             box.setAttribute("id", listeCoordonnees.indexOf(element));
             box.setAttribute("position", {
                 x: element.x,
-                y: 0,
+                y: element.y,
                 z: element.z
             });
-            box.setAttribute("height", "4");
+            if(element.y === 1.5){
+                box.setAttribute("height", "1");
+            }
+            else{
+                box.setAttribute("height", "4");
+            }
             box.setAttribute("color", "red");
             scene.appendChild(box);
-        });*/
+        });
         
     }
 
@@ -105,14 +132,38 @@
                         lst.splice(lst.indexOf(element),1);
                         event.target.style.backgroundColor = "white";
                     }
+                    else{
+                        if(element.y === 0 && (event.ctrlKey || porte)){
+                            element.y = 1.5;
+                            event.target.style.backgroundColor = "green";
+                        }
+                        else{
+                            if(!event.ctrlKey && !porte){
+                                element.y = 0;                          
+                                event.target.style.backgroundColor = "red";
+                            }
+                        }
+                    }
                 }
             });
             if(!contenu && !gomme && !event.altKey){
-                event.target.style.backgroundColor = "red";
-                lst.push({
-                    x: x,
-                    z: z
-                });
+                if(!porte && !event.ctrlKey){
+                    event.target.style.backgroundColor = "red";
+                    lst.push({
+                        x: x,
+                        y: 0,
+                        z: z
+                    });
+                }
+                else{
+                    event.target.style.backgroundColor = "green";
+                    lst.push({
+                        x: x,
+                        y: 1.5,
+                        z: z
+                    });
+                }
+                
             }
         }
     }
@@ -133,10 +184,10 @@
         tableau.innerHTML = "";
         let row;
         let d;
-        for(let i=0; i<15; i++){
+        for(let i=0; i<25; i++){
             row = document.createElement("tr");
             tableau.appendChild(row);
-            for(let j=0; j<15; j++){
+            for(let j=0; j<40; j++){
                 d = document.createElement("td");
                 row.appendChild(d);
             }
@@ -176,6 +227,10 @@
     <label for="chkgomme">Gomme</label>
     <input type="checkbox" id="chkgomme">
     (ou maintenir Alt)
+    <br />
+    <label for="chkporte">Porte</label>
+    <input type="checkbox" id="chkporte">
+    (ou maintenir Ctrl)
     <br /><br />
     <input type="button" style="color: red" value="Vider" id="btnvider">
     <br /><br />
@@ -183,7 +238,8 @@
     <br /><br />
     <div>
         <a-scene id="scene" embedded>
-            <a-entity camera look-controls wasd-controls="acceleration: 500" position="0 5 0"></a-entity>
+            <a-entity id="camera" camera look-controls wasd-controls="acceleration: 500" position="0 5 0">
+            </a-entity>
         </a-scene>
     </div>
 </body>
