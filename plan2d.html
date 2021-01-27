@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"> </script>
-    <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+
 </head>
 <script>
     let listeCoordonnees = [];
@@ -16,7 +18,6 @@
         GenererTableau();
         document.querySelector("#table").onmouseover = GetCoordonnees;
         document.querySelector("#table").onmousedown = GetCoordonnees;
-        
         document.querySelector("#chkgomme").onclick = function(event) {
             if(event.target.checked){
                 gomme = true;
@@ -44,19 +45,24 @@
         };
         document.querySelector("#btngenerer").onclick = GenererExpo;
 
+        document.querySelector("#camera").addEventListener("collide",function(e){
+            console.log('Player has collided with ', e.detail.body.el);
+            console.log(e.detail.target.el); // Original entity (camera).
+            
+            console.log(e.detail.contact); // Stats about the collision (CANNON.ContactEquation).
+            console.log(e.detail.contact.ni); // Normal (direction) of the collision (CANNON.Vec3).
+            
+        });
+
     }
-
-    function EnleverCoordonnees(){
-
-    }
-
 
     function GenererExpo(){
+        console.log({listeCoordonnees});
         let scene = document.querySelector("#scene");
         
         
         //permet de supprimer toutes les box de la scène
-        while(scene.childNodes.length > 8){
+        while(scene.childNodes.length > 9){
             scene.removeChild(scene.childNodes[scene.childNodes.length-1]);
         }
 
@@ -114,11 +120,12 @@
             }
             else{
                 box.setAttribute("height", "4");
+                box.setAttribute("repeat", "1 4");
             }
-            box.setAttribute("color", "red");
+            box.setAttribute("static-body", "");
+            box.setAttribute("src", "assets/cobblestone.png");
             scene.appendChild(box);
         });
-        
     }
 
     function MajListe(lst,x,z){
@@ -163,11 +170,10 @@
                         z: z
                     });
                 }
-                
             }
         }
     }
-
+    
     function GetCoordonnees(event){
         if(event.buttons === 1 ||event.type === "mousedown"){
             if(event.target.cellIndex !== undefined && event.target.parentElement.rowIndex !== undefined){
@@ -177,7 +183,6 @@
             }  
         }  
     }
-
 
     function GenererTableau(){
         let tableau = document.querySelector("#table");
@@ -238,8 +243,10 @@
     <br /><br />
     <div>
         <a-scene id="scene" embedded>
-            <a-entity id="camera" camera look-controls wasd-controls="acceleration: 500" position="0 5 0">
+            <a-entity id="camera" position="0 1.6 0">
+                <a-entity id="camera" camera look-controls wasd-controls kinematic-body foo></a-entity>
             </a-entity>
+            <a-plane position="0 -2 0" static-body color="orange" width="100" height="100" rotation="-90 0 0"></a-plane>
         </a-scene>
     </div>
 </body>
