@@ -61,7 +61,7 @@
         
         
         //permet de supprimer toutes les box de la scène
-        while(scene.childNodes.length > 9){
+        while(scene.childNodes.length > 12){
             scene.removeChild(scene.childNodes[scene.childNodes.length-1]);
         }
 
@@ -246,6 +246,7 @@
                 <a-entity id="camera" camera look-controls wasd-controls kinematic-body foo></a-entity>
             </a-entity>
             <a-plane position="0 -2 0" static-body color="orange" width="100" height="100" rotation="-90 0 0"></a-plane>
+            <a-sky color="lightblue"></a-sky>
         </a-scene>
     </div>
 </body>
