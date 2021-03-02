@@ -56,13 +56,13 @@ window.onload = function () {
     };
     document.querySelector("#btngenerer").onclick = GenererExpo;
     
-    /*document.querySelector("#camera").addEventListener("collide",function(e){
+    document.querySelector("#camera").addEventListener("collide",function(e){
         console.log('Player has collided with ', e.detail.body.el);
         console.log(e.detail.target.el); // Original entity (camera).
         
         console.log(e.detail.contact); // Stats about the collision (CANNON.ContactEquation).
         console.log(e.detail.contact.ni); // Normal (direction) of the collision (CANNON.Vec3).
-    });*/
+    });
     
     
     document.querySelector("#scene").addEventListener("loaded",function(e){
@@ -73,8 +73,68 @@ window.onload = function () {
         console.log(e)
     });
 }
+//RegisterWall({x: 4, z: 9}, {x: 4, z: 17});
+//RegisterWall2({x: 4, z: 17}, {x: 12, z: 10});
+AFRAME.registerComponent('wall', {
+        
+    schema: {},
 
+    //pts: [{x: 0, z: 0}, {x: 1, z: 1}],
+    
+    init: function() {
+        var pts =JSON.parse(this.el.attributes["test"].value);
+        console.log(pts)
+        if(Math.abs(pts[0].x - pts[1].x) < Math.abs(pts[0].z - pts[1].z)){
+            var vctrs = [
+                new THREE.Vector3(pts[0].x-0.5, 0, pts[0].z),
+                new THREE.Vector3(pts[1].x-0.5, 0, pts[1].z),
+                new THREE.Vector3(pts[1].x+0.5, 0, pts[1].z),
+                new THREE.Vector3(pts[0].x+0.5, 0, pts[0].z)
+                /*new THREE.Vector3(3, 0, 7),
+                new THREE.Vector3(2, 0, 7),
+                new THREE.Vector3(0, 0, 0)*/
+            ];
+        }
+        else{
+            var vctrs = [
+                new THREE.Vector3(pts[0].x, 0, pts[0].z-0.5),
+                new THREE.Vector3(pts[1].x, 0, pts[1].z-0.5),
+                new THREE.Vector3(pts[1].x, 0, pts[1].z+0.5),
+                new THREE.Vector3(pts[0].x, 0, pts[0].z+0.5)
+                /*new THREE.Vector3(3, 0, 7),
+                new THREE.Vector3(2, 0, 7),
+                new THREE.Vector3(0, 0, 0)*/
+            ];
+        }
+        
+        var ptsShape = vctrs.map( p => {return new THREE.Vector2(p.x, -p.z)});
+        var shape = new THREE.Shape(ptsShape);
 
+        var extrudedGeometry = new THREE.ExtrudeGeometry(shape, {
+        amount: 4,
+        bevelEnabled: false
+      });
+
+      extrudedGeometry.rotateX(-Math.PI * 0.5);
+      // Geometry doesn't do much on its own, we need to create a Mesh from it
+      var extrudedMesh = new THREE.Mesh(extrudedGeometry, new THREE.MeshBasicMaterial({
+        color: 0xff0000
+      }));
+      this.el.object3D.add(extrudedMesh);
+      
+      var geometry = new THREE.ShapeGeometry(shape);
+      var material = new THREE.MeshBasicMaterial({
+        color: 0x00ff00
+      });
+      var mesh = new THREE.Mesh(extrudedGeometry, material);
+      this.el.object3D.add(mesh);
+    }
+  });
+AFRAME.registerPrimitive('a-wall', {
+    defaultComponents: {
+        wall: {}
+    },
+});
 
 function GenererExpo(){
     let scene = document.querySelector("#scene");
