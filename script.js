@@ -56,7 +56,8 @@ window.onload = function () {
     };
     document.querySelector("#btngenerer").onclick = GenererExpo;
     
-    document.querySelector("#camera").addEventListener("collide",function(e){
+    document.querySelector("#camera").addEventListener("raycaster-intersected",function(e){
+        
         console.log('Player has collided with ', e.detail.body.el);
         console.log(e.detail.target.el); // Original entity (camera).
         
@@ -72,7 +73,17 @@ window.onload = function () {
     document.querySelector("#scene").addEventListener("click",function(e){
         console.log(e)
     });
+    
 }
+AFRAME.registerComponent('collider-check', {
+    dependencies: ['raycaster'],
+  
+    init: function () {
+      this.el.addEventListener('raycaster-intersection', function () {
+        console.log('Player hit something!');
+      });
+    }
+  });
 //RegisterWall({x: 4, z: 9}, {x: 4, z: 17});
 //RegisterWall2({x: 4, z: 17}, {x: 12, z: 10});
 AFRAME.registerComponent('wall', {
@@ -82,28 +93,23 @@ AFRAME.registerComponent('wall', {
     //pts: [{x: 0, z: 0}, {x: 1, z: 1}],
     
     init: function() {
-        var pts =JSON.parse(this.el.attributes["test"].value);
-        console.log(pts)
-        if(Math.abs(pts[0].x - pts[1].x) < Math.abs(pts[0].z - pts[1].z)){
+        var ptsStart =JSON.parse(this.el.attributes["start"].value);
+        var ptsEnd =JSON.parse(this.el.attributes["end"].value);
+
+        if(Math.abs(ptsStart.x - ptsEnd.x) < Math.abs(ptsStart.z - ptsEnd.z)){
             var vctrs = [
-                new THREE.Vector3(pts[0].x-0.5, 0, pts[0].z),
-                new THREE.Vector3(pts[1].x-0.5, 0, pts[1].z),
-                new THREE.Vector3(pts[1].x+0.5, 0, pts[1].z),
-                new THREE.Vector3(pts[0].x+0.5, 0, pts[0].z)
-                /*new THREE.Vector3(3, 0, 7),
-                new THREE.Vector3(2, 0, 7),
-                new THREE.Vector3(0, 0, 0)*/
+                new THREE.Vector3(ptsStart.x-0.3, 0, ptsStart.z),
+                new THREE.Vector3(ptsEnd.x-0.3, 0, ptsEnd.z),
+                new THREE.Vector3(ptsEnd.x+0.3, 0, ptsEnd.z),
+                new THREE.Vector3(ptsStart.x+0.3, 0, ptsStart.z)
             ];
         }
         else{
             var vctrs = [
-                new THREE.Vector3(pts[0].x, 0, pts[0].z-0.5),
-                new THREE.Vector3(pts[1].x, 0, pts[1].z-0.5),
-                new THREE.Vector3(pts[1].x, 0, pts[1].z+0.5),
-                new THREE.Vector3(pts[0].x, 0, pts[0].z+0.5)
-                /*new THREE.Vector3(3, 0, 7),
-                new THREE.Vector3(2, 0, 7),
-                new THREE.Vector3(0, 0, 0)*/
+                new THREE.Vector3(ptsStart.x, 0, ptsStart.z-0.3),
+                new THREE.Vector3(ptsEnd.x, 0, ptsEnd.z-0.3),
+                new THREE.Vector3(ptsEnd.x, 0, ptsEnd.z+0.3),
+                new THREE.Vector3(ptsStart.x, 0, ptsStart.z+0.3)
             ];
         }
         
@@ -111,23 +117,21 @@ AFRAME.registerComponent('wall', {
         var shape = new THREE.Shape(ptsShape);
 
         var extrudedGeometry = new THREE.ExtrudeGeometry(shape, {
-        amount: 4,
+        amount: 2,
         bevelEnabled: false
       });
-
       extrudedGeometry.rotateX(-Math.PI * 0.5);
       // Geometry doesn't do much on its own, we need to create a Mesh from it
       var extrudedMesh = new THREE.Mesh(extrudedGeometry, new THREE.MeshBasicMaterial({
         color: 0xff0000
       }));
+
+      //problème de collision diagonale
+      if(Math.abs(ptsStart.x - ptsEnd.x) < 3 || Math.abs(ptsStart.z - ptsEnd.z) < 3){
+        this.el.setAttribute("static-body",{});
+      }
       this.el.object3D.add(extrudedMesh);
-      
-      var geometry = new THREE.ShapeGeometry(shape);
-      var material = new THREE.MeshBasicMaterial({
-        color: 0x00ff00
-      });
-      var mesh = new THREE.Mesh(extrudedGeometry, material);
-      this.el.object3D.add(mesh);
+
     }
   });
 AFRAME.registerPrimitive('a-wall', {
