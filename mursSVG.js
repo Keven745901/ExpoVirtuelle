@@ -67,6 +67,16 @@ function TransformeCoordonnees(rawCoordonnees) {
 }
 
 window.onload = function () {
+
+  document.querySelector("#camera").addEventListener("raycaster-intersected",function(e){
+        
+    console.log('Player has collided with ', e.detail.body.el);
+    console.log(e.detail.target.el); // Original entity (camera).
+    
+    console.log(e.detail.contact); // Stats about the collision (CANNON.ContactEquation).
+    console.log(e.detail.contact.ni); // Normal (direction) of the collision (CANNON.Vec3).
+});
+
   document.querySelector("#upload").onchange = function () {
     let reader = new FileReader();
     let file = document.querySelector("#upload").files[0];
@@ -85,7 +95,7 @@ window.onload = function () {
 
           //let regex = /[a-zA-Z]/g;
           let scene = document.querySelector("#scene");
-          while (scene.childNodes.length > 14) {
+          while (scene.childNodes.length > 16) {
             scene.removeChild(scene.childNodes[scene.childNodes.length - 1]);
           }
           for (let k = 0; k < gTag.length; k++) {
@@ -165,8 +175,7 @@ window.onload = function () {
                 console.log({ normeV });
                 wall.setAttribute("width", normeV);
                 wall.setAttribute("depth", 0.5);
-                wall.setAttribute("color", "#221510");
-                wall.setAttribute("static-body", "");
+                wall.setAttribute("shadow", "");
 
                 let posY = 1.5;
 
@@ -176,13 +185,18 @@ window.onload = function () {
                 switch (k) {
                   case 0:
                     wall.setAttribute("height", "3");
+                    wall.setAttribute("static-body", "");
+                    wall.setAttribute("color", "#443733");
                     break;
                   case 1:
                     wall.setAttribute("height", "0.5");
+                    wall.setAttribute("color", "#221510");
                     posY = 2.75;
                     break;
                   default:
                     wall.setAttribute("height", "3");
+                    wall.setAttribute("static-body", "");
+                    wall.setAttribute("color", "#443733");
                 }
 
                 let posX = parseFloat(startX) + (endX - startX) / 2;
@@ -203,6 +217,7 @@ window.onload = function () {
                   cylindre.setAttribute("height", 3.005);
                   cylindre.setAttribute("radius", 0.41);
                   cylindre.setAttribute("color", "#221510");
+                  cylindre.setAttribute("shadow", "");
                   cylindre.setAttribute("geometry", "segmentsRadial: 6");
                   cylindre.setAttribute("static-body", "");
                   cylindre.setAttribute("position", {
@@ -210,6 +225,7 @@ window.onload = function () {
                     y: 1.5,
                     z: startZ,
                   });
+
                   cylindres.push(cylindre);
                 }
 
@@ -217,6 +233,7 @@ window.onload = function () {
                 cylindre.setAttribute("height", 3.005);
                 cylindre.setAttribute("radius", 0.41);
                 cylindre.setAttribute("color", "#221510");
+                cylindre.setAttribute("shadow", "");
                 cylindre.setAttribute("geometry", "segmentsRadial: 6");
                 cylindre.setAttribute("static-body", "");
                 cylindre.setAttribute("position", {
@@ -275,5 +292,5 @@ window.onload = function () {
     } else {
       alert("Le fichier envoyé doit être un fichier SVG");
     }
-  };
+  }; 
 };

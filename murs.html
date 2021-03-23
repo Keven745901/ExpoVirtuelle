@@ -9,12 +9,13 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
     <script src="mursSVG.js"></script>
     <style>
         a-scene{
         width: 900px;
         height: 600px;
-        border: 1px solid black;
+        border: 1px solid rgb(73, 24, 24);
     }
     </style>
 </head>
@@ -22,9 +23,20 @@
     <input type="file" id="upload" />
     <div>
         <a-scene physics="debug: true" id="scene" embedded>
-            <a-entity id="camera" position="0 5 0">
-                <a-entity camera look-controls wasd-controls="acceleration: 500" kinematic-body></a-entity>
+            <a-entity id="camera" position="0 1.6 0">
+                <a-entity raycaster="showLine: true" camera wasd-controls look-controls="pointerLockEnabled: true" kinematic-body>
+                    <a-cursor id="cursor" geometry="primitive: ring; radiusInner: 0.001; radiusOuter: 0.005" material="color: gray; shader: flat"></a-cursor>
+                    <!--<a-entity geometry="primitive: plane; height: 1.5; width: 1" position="-0.85 0 -1" rotation="0 5 0" material="color: gray; opacity: 0.5">
+                        <a-entity text="value: Hello World; color: blue; align: center"></a-entity>
+                    </a-entity>-->
+                </a-entity>
             </a-entity>
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 1" position="-0.5 1 1"></a-entity>
+            <a-box width="1.5" depth="1" height="3">
+                <a-plane position="-2 1 0" width="2" height="2" shadow="receive: false" look-at="[camera]" color="red"></a-plane>
+            </a-box>
+            
             <a-grid repeat="500 500" position="0 0 0" static-body color="orange" rotation="-90 0 0"></a-grid>
             <a-sky color="lightblue" position="0 -100 0"></a-sky>
             
