@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"> </script>
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="scripts/mursPlan2d.js"></script>
 </head>
 
 <style>
@@ -58,17 +59,43 @@
     <input type="button" value="Générer" id="btngenerer">
     <br /><br />
     <div>
-        <a-scene id="scene" cursor="rayOrigin: mouse; far:10" embedded>
-            <a-entity id="camera" position="0 10 0">
-                <a-entity camera look-controls wasd-controls="acceleration: 200" kinematic-body="radius:0.2"></a-entity>
+        <a-scene physics="debug: true" id="scene" cursor="rayOrigin: cursor" embedded>
+            <a-entity id="camera" position="0 1.6 0">
+                <a-entity camera wasd-controls="acceleration: 200; fly:true" look-controls="pointerLockEnabled: true" kinematic-body="radius:0.5">
+                    <a-cursor raycaster="interval: 500" id="cursor" geometry="primitive: ring; radiusInner: 0.001; radiusOuter: 0.005" material="color: black; shader: flat"></a-cursor>
+                    <!--<a-entity geometry="primitive: plane; height: 1.5; width: 1" position="-0.85 0 -1" rotation="0 5 0" material="color: gray; opacity: 0.5">
+                        <a-entity text="value: Hello World; color: blue; align: center"></a-entity>
+                    </a-entity>-->
+                </a-entity>
             </a-entity>
-            <a-wall start='{"x": 4, "z": 9}' end='{"x": 4, "z": 17}'></a-wall>
-            <a-wall start='{"x": 4, "z": 9}' end='{"x": 13, "z": 17}'></a-wall>
-            <a-wall start='{"x": 4, "z": 9}' end='{"x": 17, "z": 9}'></a-wall>
+            <!-- <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 1" position="-0.5 1 1"></a-entity> -->
+            <a-grid repeat="500 500" position="0 0 0" static-body color="orange" rotation="-90 0 0"></a-grid>
+            <a-sky src="assets/26229014269_dac746757d_k.jpg" position="0 1800 0"></a-sky>
 
-            <a-plane position="0 0 0" static-body color="orange" width="100" height="100" rotation="-90 0 0"></a-plane>
-            <a-sky color="lightblue"></a-sky>
         </a-scene>
+    </div>
+    <div id="listeOeuvres"></div>
+    <br />
+    <div>
+        <label for="posx">Position X </label>
+        <input id="posx" type="number" name="scalx" step="0.1" onchange="oeuvre.target.object3D.position.x = document.querySelector('#posx').value">
+        <label for="posy">Position Y </label>
+        <input id="posy" type="number" name="scaly" step="0.1" onchange="oeuvre.target.object3D.position.y = document.querySelector('#posy').value">
+        <label for="posz">Position Z </label>
+        <input id="posz" type="number" name="scalz" step="0.1" onchange="oeuvre.target.object3D.position.z = document.querySelector('#posz').value">
+        <br /><br />
+        <label for="rotx">Rotation X </label>
+        <input id="rotx" type="number" name="rotx" step="0.1" onchange="oeuvre.target.object3D.rotation.x = document.querySelector('#rotx').value">
+        <label for="roty">Rotation Y </label>
+        <input id="roty" type="number" name="roty" step="0.1" onchange="oeuvre.target.object3D.rotation.y = document.querySelector('#roty').value">
+        <label for="rotz">Rotation Z </label>
+        <input id="rotz" type="number" name="rotz" step="0.1" onchange="oeuvre.target.object3D.rotation.z = document.querySelector('#rotz').value">
+        <br /><br />
+        <label for="scal">Scale</label>
+        <input id="scal" type="number" name="scalx" step="0.1" max="10" onchange="modifierScale(document.querySelector('#scal').value)">
+        <br /><br />
+        <input type="submit" value="Modifier">
     </div>
 </body>
 </html>

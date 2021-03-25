@@ -1,0 +1,258 @@
+.cp {
+  color: #38E7FF !important;
+}
+
+.cs {
+  color: #FF2E2E !important;
+}
+
+.ct {
+  color: #3CC84A !important;
+}
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-1 {
+  z-index: 1;
+}
+
+.z-2 {
+  z-index: 2;
+}
+
+.z-3 {
+  z-index: 3;
+}
+
+.z-4 {
+  z-index: 4;
+}
+
+.z-5 {
+  z-index: 5;
+}
+
+.z-6 {
+  z-index: 6;
+}
+
+.z-7 {
+  z-index: 7;
+}
+
+.z-8 {
+  z-index: 8;
+}
+
+.z-9 {
+  z-index: 9;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.dropdownMenu .collapse .card-body {
+  margin: 15px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent !important;
+}
+
+#carouselTutorial {
+  background-color: transparent !important;
+}
+#carouselTutorial .carousel-btn {
+  position: absolute;
+  padding: 56.25% 100% 0 0;
+}
+#carouselTutorial .carousel-card {
+  padding: 2px;
+  background-color: #ffffff;
+}
+#carouselTutorial .carousel-image {
+  padding: 56.25% 100% 0 0;
+  background-size: cover;
+  background-position: center;
+}
+#carouselTutorial .carousel-caption {
+  position: initial;
+  text-align: left;
+  padding-bottom: 0;
+}
+#carouselTutorial .carousel-control-next, #carouselTutorial .carousel-control-prev {
+  width: 15% !important;
+  text-decoration: none !important;
+}
+
+.menuBurger {
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 15px 0 0 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+.menuBurger .line {
+  height: 2px;
+  width: 100%;
+  background-color: #ffffff;
+}
+.menuBurger.active {
+  background-color: transparent;
+}
+.menuBurger.active .line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.menuBurger.active .line:nth-child(2) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+#Menu {
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-y: scroll;
+}
+#Menu a {
+  color: #ffffff;
+  padding: 10px;
+  font-size: 20px;
+}
+#Menu .row {
+  min-height: 65px;
+  padding: 15px 0;
+  border-bottom: 2px #ffffff solid;
+}
+
+.userMenu {
+  justify-content: flex-end;
+  height: 67px;
+}
+.userMenu a {
+  width: fit-content !important;
+  align-items: center;
+}
+
+.navMenu ul {
+  list-style-type: none;
+}
+.navMenu li {
+  padding: 10px 0;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+}
+.navMenu li :hover {
+  background-color: #ffffff;
+  color: #000000 !important;
+}
+.navMenu li a {
+  width: 100%;
+}
+
+.dropdownMenu a {
+  border-bottom: 1px #ffffff solid;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contactMenu {
+  border-bottom: none !important;
+}
+.contactMenu div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px 0;
+}
+.contactMenu div a {
+  text-decoration: underline !important;
+}
+.contactMenu a {
+  font-size: 16px !important;
+  justify-content: center;
+}
+.contactMenu p {
+  text-align: center;
+  color: #afb9cc;
+}
+.contactMenu p a {
+  display: block;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  padding: 20px 50px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.no-btn {
+  border: 0;
+  background-color: transparent;
+}
+
+.bicon {
+  height: 30px;
+}
+
+.icon {
+  height: 20px;
+}
+
+.smicon {
+  height: 15px;
+}
+
+h1.title_create {
+  font-family: "Roboto", sans-serif;
+  font-size: 36px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+h2.soustitle_create {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: #3CC84A;
+  margin-top: 1em;
+}

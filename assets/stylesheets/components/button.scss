@@ -1,0 +1,237 @@
+.next{
+    border-radius: 0;
+    background-color: #F93C3C;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1em;
+    color: white;
+    padding: 12px 73px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin: 6em 0px 0px auto;
+}
+
+.next:after{
+    content: url(../../assets/img/right-arrow-button.png);
+    position: relative;
+    width: 0px;
+    height: 21px;
+    left: 37px;
+    display: flex;
+    align-items: center;
+}
+
+
+.generation{
+
+    .container-button{
+        background: #FFFFFF;
+        box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        padding: 10px;
+  
+        .form-select{
+            border: 1px solid $black;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+  
+    }
+  
+    .container2-button{
+        background: #FFFFFF;
+        box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        padding: 0;
+  
+        .form-select{
+            border: 1px solid $black;
+            text-transform: uppercase;
+            font-size: 1em;
+        }
+  
+    }
+  
+  
+    .icone-menu{
+        list-style: none;
+        padding: 10px 16px;
+  
+        .form-select{
+            border: 1px solid $black;
+            text-transform: initial;
+            font-size: 1em;
+        }
+  
+    }
+  
+    #icone-menu-one{
+      display: inline-flex;
+      margin-right: 2%;
+      height: 40px;
+      width: 40px;
+      text-align: center;
+  
+      img{
+        width: 25px;
+      }
+  
+    }
+  
+    #icone-menu-select{
+        padding: 8px 4px;
+        display: inline-flex;
+        vertical-align: bottom;
+        padding: 0;
+    }
+  
+  
+    .btn-lg{
+        border-radius: 0;
+        background-color: $tertiary;
+        border: none;
+        text-transform: uppercase;
+        font-size: 1.12em;
+        color: white;
+        padding: 15px 51px;
+    }
+
+  }
+  
+  
+.btn_clear{
+    width: 1.7em;
+    height: 1.7em;
+    border: 0;
+    border-radius: 1em;
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    content: url(../../assets/img/clear_button.svg);
+    background-color: red;
+  }
+  
+  .btn_add{
+    width: 2.2em;
+    height: 2.2em;
+    border: 0;
+    border-radius: 2em;
+    position: absolute;
+    right: -25px;
+    top: 45%;
+    content: url(../../assets/img/add_oeuvre.svg);
+    background-color: #32CCD8;
+  
+    @media screen and (max-width: 767px) {
+      top: 1em;
+      right: 0;
+      left: 10em;
+    }
+  
+  img{
+    width: 1.6em !important;
+  }
+  
+  }
+  
+  button:focus, a:focus, input:focus {
+    outline: $blue solid 3px;
+  }
+  
+  input[type="checkbox"].chkemplacement {
+    display: none;
+  }
+
+
+  input[type="checkbox"].chkemplacement + label::before {
+    content: url(../img/XMLID.svg);
+    padding: 7px 7px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-flex;
+    margin-right: 2%;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+
+  }
+  input[type="checkbox"].chkemplacement:checked + label::before {
+    background-color: #d2c9c9;
+  }
+
+
+
+
+  input[type="checkbox"].chkgomme {
+    display: none;
+  }
+
+
+  input[type="checkbox"].chkgomme + label::before {
+    content: url(../img/eraser.svg);
+    padding: 7px 7px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-flex;
+    margin-right: 2%;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+
+  }
+  input[type="checkbox"].chkgomme:checked + label::before {
+    background-color: #d2c9c9;
+  }
+
+
+
+
+  
+  input[type="checkbox"].chkporte {
+    display: none;
+  }
+
+
+  input[type="checkbox"].chkporte + label::before {
+    content: url(../img/door.svg);
+    padding: 7px 7px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-flex;
+    margin-right: 2%;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+
+  }
+  input[type="checkbox"].chkporte:checked + label::before {
+    background-color: #d2c9c9;
+  }
+
+
+  
+  input[type="button"].btnvider {
+    display: none;
+  }
+
+
+  input[type="button"].btnvider + label::before {
+    content: url(../img/clear_2d.svg);
+    padding: 7px 7px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-flex;
+    margin-right: 2%;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+
+  }
+  input[type="button"].btnvider:checked + label::before {
+    background-color: #d2c9c9;
+  }

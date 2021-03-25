@@ -1,0 +1,242 @@
+
+
+.oeuvres{
+    background: #32CCD8;
+    max-width: 300px;
+    border-radius: 0;
+    border: 0;
+    padding: 10px 27px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+  
+      img{
+        width: 15px;
+        padding-bottom: 3px;
+      }
+  
+  
+  
+  }
+  
+  .btn_oeuvres{
+  
+    background: white;
+    color: black;
+    width: 300px;
+    padding: 7px 0;
+    text-align: left;
+    font-size: 1.1em;
+    border-radius: 0;
+    border: solid 2px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+  
+    &:hover {
+      color: #464646;
+      background-color: #f7f7f7;
+  }
+  
+  &:focus {
+    color: #464646;
+    background-color: #f7f7f7;
+    border-color: white;
+    border: 0;
+  }
+  
+  }
+  
+  .accordion-button:not(.collapsed){
+    color: initial;
+    background-color: initial;
+  }
+  
+  .accordion-button.collapsed {
+    border-bottom: solid 2px;;
+  }
+  
+  .liste_oeuvres{
+    justify-content: flex-end !important;
+  display: grid;
+
+    @media screen and (max-width: 767px) {
+      justify-content: center !important;
+    }
+
+
+  }
+  
+  .nav-tabs .nav-link{
+    width: 50%;
+    border-radius: 0;
+    border: none;
+    background: black !important;
+    color: white;
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: 1rem 1rem;
+  }
+
+  #collapseExample {
+    height: 10em;
+    overflow: auto;
+}
+  
+  .nav{
+  
+    margin-top: 2em;
+  
+    .active{
+      background: #F0EEEE !important;
+      font-weight: bold;
+      font-size: 1.12em;
+  
+    }
+  }
+  
+  .tab-content{
+    background: #F5F5F5;
+  }
+
+.search{
+    width: 73%;
+    border-radius: 1em;
+    border: solid 1px;
+    height: 2.1em;
+}
+
+#nav-home{
+  .form-select{
+    max-width: 55%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+}
+
+
+
+  .oeuvre_card{
+
+    font-family: $font-roboto;
+    border-radius: 12px;
+    border: 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 1.6em;
+    margin-left: auto;
+    margin-right: auto;
+
+    .image_content{
+        width: 100%;
+    height: 100%;
+    background-image: url('../../assets/img/joconde.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 8px;
+    min-height: 179px;
+    }
+
+
+      img{
+          width: 116px;
+          border-radius: 12px 0 0 12px;
+      }
+
+      .card-title{
+          text-transform: uppercase;
+          color: #776F6F;
+          font-size: 1.18em;
+          position: relative;
+
+        &:after{
+                content: '';
+                position: absolute;
+                left: 0;
+                border: solid 1px;
+                width: 26%;
+                top: 26px;
+        }
+
+      }
+
+      .card-text{
+          margin-top: 1.6em;
+          font-size: 0.73em;
+      }
+
+      .card-body{
+          position: relative;
+
+   
+          .button{
+            content: url(../../assets/img/add_oeuvre.svg);
+            position: absolute;
+            right: -25px;
+            width: 34px;
+            top: 45%;
+            background: #32CCD8;
+            height: 34px;
+            border-radius: 1em;
+            padding: 7px;
+            text-align: center;
+        
+            @media screen and (max-width: 767px) {
+                top: 1em;
+                right: 0;
+                left: 10em;
+              }
+        
+          }
+
+      }
+
+
+  }
+
+  .image-upload{
+      text-align: right;
+      margin-top: 9em;
+      margin-bottom: 9em;
+
+      @media screen and (max-width: 767px) {
+        text-align: center;
+        margin-top: 4em;
+        margin-bottom: 4em;
+      }
+
+  }
+  
+  .image-upload>input {
+    display: none;
+  }
+
+  .separation{
+    background: black;
+    width: 5px;
+    height: 70%;
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-control{
+    text-transform: uppercase;
+    border-radius: 0;
+    border: solid 1px;
+  }
+
+  .grp_oeuvre{
+    max-width: 80%;
+    margin-top: 9em;
+
+    @media screen and (max-width: 767px) {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+
+  }
