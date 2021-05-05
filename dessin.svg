@@ -23,7 +23,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.67857"
+     inkscape:zoom="2.5941767"
      inkscape:cx="162.1014"
      inkscape:cy="96.437767"
      inkscape:document-units="mm"
@@ -75,6 +75,14 @@
        style="fill:none;stroke:#000000;stroke-width:0.256991px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 33.552331,9.1998328 V 2.8179124"
        id="path869" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 15.423249,43.022747 33.552331,36.528748"
+       id="path842" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 15.423249,21.105498 1.6234999,2.7058331"
+       id="path844" />
   </g>
   <g
      inkscape:groupmode="layer"

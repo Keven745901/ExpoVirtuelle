@@ -26,6 +26,11 @@
   .carousel-control-next, .carousel-control-prev {
     width: 15% !important;
     text-decoration: none!important;
+    outline-offset: -10px;
+
+    &:focus {
+      outline: $secondary solid 3px!important;
+    }
   }
 }
 

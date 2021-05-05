@@ -8,11 +8,14 @@
 @import 'components/collapse';
 @import 'components/carousel';
 @import 'components/button';
+@import 'components/card';
 
 //=== Features
 @import 'features/interface';
+@import 'features/home';
 @import 'features/timeline';
 @import 'features/oeuvres';
+@import 'features/niveau3';
 
 //=== Theme
 @import 'theme';

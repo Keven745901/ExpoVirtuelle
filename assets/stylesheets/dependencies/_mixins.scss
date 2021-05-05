@@ -1,4 +1,13 @@
 //@mixin mobile { @media screen and () and (max-width: $breakpoint-xs-max){@content;} }
-@mixin tablet { @media screen and (min-width: $breakpoint-sm-min) and (max-width: $breakpoint-md-max){@content;} }
-@mixin laptop { @media screen and (max-width: $breakpoint-lg-max){@content;} }
+@mixin out-mobile { @media screen and (min-width: $breakpoint-sm-min){@content;}}
+@mixin tablet { @media screen and (min-width: $breakpoint-md-min){@content;} }
+@mixin laptop { @media screen and (min-width: $breakpoint-md-max){@content;} }
 @mixin computer { @media screen and (min-width: $breakpoint-xl-min){@content;} }
+
+.laptop {
+  display: none;
+
+  @include laptop {
+    display: block;
+  }
+}

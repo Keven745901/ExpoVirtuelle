@@ -25,8 +25,29 @@ function GenererExpo(){
     mursvertical=creerListeMursVerticaux(lstmursvertical);
     mursverticals=GenererMurVertical(mursvertical);
 
+    ajouterControleOeuvre(listeEmplacements);
+    listeEmplacementsGeneres = listeEmplacements;
+    
     listeEmplacements.forEach(element => {
-        oeuvre = document.createElement("a-gltf-model");
+        oeuvre = document.createElement("a-text");
+        console.log(oeuvre);
+        let colors = ["red", "green", "blue", "yellow", "hotpink", "orange", "purple"];
+
+        oeuvre.setAttribute("color", colors[Math.ceil(Math.random() * colors.length - 1)]);
+        oeuvre.setAttribute("look-at", "[camera]");
+        oeuvre.setAttribute("position", {
+            x: element.x,
+            y: 3.5,
+            z: element.z
+        });
+        oeuvre.setAttribute("font", "mozillavr");
+        oeuvre.setAttribute("scale", {
+            x: 10,
+            y: 10,
+            z: 10
+        });
+        oeuvre.setAttribute("value", listeEmplacements.indexOf(element) + 1);
+        /* oeuvre = document.createElement("a-gltf-model");
         console.log(oeuvre);
         oeuvre.setAttribute("src", "../assets/venus_de_milo.glb");
         oeuvre.setAttribute("id", "oeuvre" + listeEmplacements.indexOf(element));
@@ -40,7 +61,7 @@ function GenererExpo(){
             x: "0.01",
             y: "0.01",
             z: "0.01"
-        });
+        }); */
         scene.appendChild(oeuvre);
     });
 
@@ -187,7 +208,7 @@ function MajListe(lst, portes, emplacements, x, z, event){
                 });
                 
                 event.target.style.backgroundColor = "blue";
-                event.target.innerHTML = "<div class='nbr_table'>" + listeEmplacements.length + "<div>";
+                event.target.innerHTML = listeEmplacements.length;
 
                 cellulesEmplacements.push(event.target);
                 }
@@ -359,7 +380,7 @@ function GenererMurHorizontal(murshorizontal)
                 box.setAttribute("color", "red");
                 box.setAttribute("static-body", "");
                 scene.appendChild(box);
-                        
+                console.log("adzzdzd")
             }
             if(lstmurshorizontal[i].length > 1)
             {
@@ -393,6 +414,7 @@ function GenererMurHorizontal(murshorizontal)
                     box.setAttribute("color", "red");
                     box.setAttribute("static-body", "");
                     scene.appendChild(box);
+                    console.log("adzzdzd")
                 }
             }
         i++;
@@ -409,6 +431,7 @@ function GenererMurVertical(mursvertical)
     lstmursvertical=mursvertical;
     i=0;
     index=lstmursvertical.length;
+
     while(i<index)
     {
         if(lstmursvertical !== undefined)
@@ -460,6 +483,7 @@ function GenererMurVertical(mursvertical)
                 box.setAttribute("color", "red");
                 box.setAttribute("static-body", "");
                 scene.appendChild(box);
+                console.log("adzzdzd")
             }
             i++;
         }

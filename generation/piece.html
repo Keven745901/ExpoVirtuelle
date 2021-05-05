@@ -9,17 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/stylesheets/style.css">
+    
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
     <script src="../scripts/mursOnLoad.js"></script>
+    <script src="../scripts/gestionOeuvres.js"></script>
     <script src="../scripts/mursSVG.js"></script>
     <script src="../scripts/mursPlan2d.js"></script>
+    
     <script src="https://aframe.io/releases/1.0.0/aframe.min.js"> </script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script> 
-
+    
 </head>
 <style>
     table{
@@ -38,12 +43,24 @@
         border: 1px solid rgb(209, 209, 209);
         text-align: center;
         color: white;
+        max-width: 0;
+        line-height: 0;
     }
 
     a-scene{
         width: 100%;
         height: 540px;
         border: 1px solid black;
+    }
+
+    #steps2{
+        display: none;
+        margin-top: 8em;
+    }
+
+    #steps3{
+        display: none;
+        margin-top: 8em;
     }
 
 </style>
@@ -82,9 +99,22 @@
       </section>
 </header>
 <main>
+
     <div class="container">
-<input type="file" id="upload" style="position: absolute; right: 0px" />
+
+    <section id="steps1">
+
         <div class="generation">
+
+
+            <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                  <div class="toast-body">
+                  Hello, world! This is a toast message.
+                 </div>
+                  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+              </div>
 
             <div class="row">
 
@@ -99,7 +129,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-5 col-12">
+                <div class="col-sm-7 col-12">
                     <div class="container2-button">
                         <ul class="icone-menu">
                             <li id="icone-menu-one">
@@ -131,6 +161,7 @@
                                 <input type="button" style="color: red" value="Vider" class="btnvider" id="btnvider">
                                 <label for="btnvider"></label>
                             </li>
+                            <input type="file" id="upload" style="font-size: 13px;" />
                         </ul>
                     </div>
                 </div>
@@ -170,7 +201,7 @@
                                     <a-plane id="e1" visible="false" text="value: Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World; font: mozillavr; baseline: bottom; align:center; anchor: center" position="-2 1 0" width="2" height="2" shadow="receive: false" look-at="[camera]" color="red">
                                     </a-plane>
                                 </a-box>-->
-                                <a-grid width="500" height="500" position="0 0 0" static-body color="orange" rotation="-90 0 0"></a-grid>
+                                <a-grid material="src:https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v1.16.3/assets/grid.png; repeat: 500 500" width="500" height="500" position="0 0 0" static-body rotation="-90 0 0"></a-grid>
                                 <a-sky src="../assets/26229014269_dac746757d_k.jpg" position="0 1800 0"></a-sky>
                                 
                             </a-scene>
@@ -183,15 +214,326 @@
         
         </div>
 
+        </section>
+
+        <section id="steps2">
+
+
+            <section id="Steps2" class="steps-sectionNiv2">
+
+
+                <div class="steps-timeline">
     
-            <button type="button" class="btn btn-primary btn-lg next" aria-label="Choix des oeuvres de l'exposition">étape suivante</button>
+                    <div class="steps-two">
+                        <div class="steps-cercle">
+                            <h3 class="steps-two-name">
+                                Expo
+    
+                            </h3>
+                        </div>
+                    </div>
+    
+                    <div class="steps-one" style="align-content: flex-start;">
+    
+                        <div class="steps-one-badge">
+                            <img class="steps-img" src="../assets/img/objet_timelineNiv2.svg" alt="génération niveau 2 objets">
+                            <h3 class="steps-name">
+                                Objets
+                            </h3>
+                        </div>
+    
+    
+                    </div>
+    
+    
+    
+                </div><!-- /.steps-timeline -->
+    
+            </section>
+
+   
+    
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" aria-label="LIste d’oeuvres existente">LIste d’oeuvres existente</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" aria-label="AJOUTer une oeuvre">AJOUTer une oeuvre</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    
+                    <div class="row">
+                        <div class="col-8 text-end">
+    
+                            <label for="search_oeuvre">chercher une oeuvre </label>
+                            <input type="text" class="search" id="search_oeuvre"  name="search_oeuvre">
+    
+                        </div>
+                        <div class="col-4">
+    
+                            <select class="form-select" aria-label="catégorie">
+                                <option selected>catégorie</option>
+                                <option value="1">tableaux</option>
+                                <option value="2">tableaux</option>
+                                <option value="3">tableaux</option>
+                            </select>
+    
+                        </div>
+                    </div>
+    
+    
+    
+                    <div class="row">
+                        <div class="col-md-6">
+    
+                            <div class="card mb-3 oeuvre_card" style="max-width: 95%;">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+    
+                                        <div class="image_content"></div>
+    
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">la joconde</h5>
+                                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
+                                            <!--<a href=""><div class="button"></div></a>-->
+                                            <button type="button" class="btn_add" aria-label="ajouter l'oeuvre"><img src="../assets/img/add_oeuvre.svg" alt="ajouter l'oeuvre"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                        <div class="col-md-6">
+    
+                            <div class="card mb-3 oeuvre_card" style="max-width: 95%;">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+                                        <div class="image_content"></div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">la joconde</h5>
+                                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
+                                            <!--<a href=""><div class="button"></div></a>-->
+                                            <button type="button" class="btn_add" aria-label="ajouter l'oeuvre"><img src="../assets/img/add_oeuvre.svg" alt="ajouter l'oeuvre"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                    </div>
+    
+    
+                    <div id="divControlesOeuvres">
+
+                    </div>
+    
+                    <div id="divrechercheOeuvres">
+
+                    </div>
+                    <input type="button" id="btnremplacer" value="Mettre les modèles" />
+    
+                </div>
+    
+    
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    
+                    <form action="" method="get">
+    
+    
+                        <div class="row">
+    
+                            <div class="col-md-4">
+    
+                                <div class="image-upload">
+                                    <label for="file-input">
+                                        Ajouter un fichier
+                                        <img src="../assets/img/upload.png"/>
+                                    </label>
+                                    <input type="file" name="file-input" id="file-input"/>
+                                </div>
+    
+    
+    
+                            </div>
+    
+                            <div class="col-md-2 d-md-block d-none">
+                                <div class="separation"></div>
+                            </div>
+    
+                            <div class="col-md-6">
+    
+                                <p class="mt-4">* champs obligatoires</p>
+    
+                                <div class="grp_oeuvre">
+                                    <input type="file" name="uploadOeuvre" id="uploadOeuvre" />
+                                </div>
+    
+                            </div>
+    
+    
+    
+    
+    
+                        </div>
+    
+                    </form>
+    
+    
+    
+                </div>
+    
+    
+            </div>
+
+
+            <div class="liste_oeuvres">
+
+                <p>
+                    <button class="btn btn-primary btn_oeuvres accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" aria-label="liste de mes oeuvres">
+                        MES OEUVRES
+                    </button>
+                </p>
+                <div class="collapse show" id="collapseExample">
+    
+                    <div class="card card-body oeuvres">
+    
+                        la joconde
+    
+                        <button type="button" class="btn_clear"><img src="../assets/img/clear_button.svg" alt="supprimer oeuvre"></button>
+    
+                    </div>
+    
+                    <div class="card card-body oeuvres">
+    
+                        la joconde
+    
+    
+    
+                        <button type="button" class="btn_clear" aria-label="supprimer oeuvre"><img src="../assets/img/clear_button.svg" alt="supprimer oeuvre"></button>
+    
+                    </div>
+    
+                    <div class="card card-body oeuvres">
+    
+                        la joconde
+    
+                        <button type="button" class="btn_clear" aria-label="supprimer oeuvre"><img src="../assets/img/clear_button.svg" alt="supprimer oeuvre"></button>
+    
+                    </div>
+    
+    
+                </div>
+    
+            </div>
+
+        </section>
+
+        <section id="steps3">
+
+            <section id="timeline">
+                <div class="line">
+                    <div class="underline">
+                        <div class="step">
+                            <div class="circle"></div>
+                            <h3 class="step-small">Expo</h3>
+                        </div>
+    
+                        <div class="step">
+                            <div class="badge">
+                                <img class="steps-img" src="../assets/img/objet_timelineNiv2.svg" alt="génération niveau 2 objets">
+                            </div>
+                            <h3 class="step-big">Objets</h3>
+                        </div>
+    
+                        <div class="step">
+                            <div class="circle red"></div>
+                            <h3 class="step-small">modification</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="oeuvre">
+                        <div class="oeuvre_img">
+                            <img alt="oeuvre">
+                        </div>
+                        <div class="oeuvre_txt">
+                            <h4>Titre oeuvre</h4>
+                            <textarea name="description" id="" cols="10" rows="2" placeholder="description"></textarea>
+                            <button type="button" class="btn btn-primary" aria-label="Nom emplacement">Nom emplacement</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="truc"></div>
+                </div>
+            </div>
+            <div>
+                <br />
+                <label for="posx">Position X </label>
+                <input id="posx" type="number" name="scalx" step="0.1" onchange="oeuvre.target.object3D.position.x = parseFloat(document.querySelector('#posx').value)">
+                <label for="posy">Position Y </label>
+                <input id="posy" type="number" name="scaly" step="0.1" onchange="oeuvre.target.object3D.position.y = parseFloat(document.querySelector('#posy').value)">
+                <label for="posz">Position Z </label>
+                <input id="posz" type="number" name="scalz" step="0.1" onchange="oeuvre.target.object3D.position.z = parseFloat(document.querySelector('#posz').value)">
+                <br /><br />
+                <label for="rotx">Rotation X </label>
+                <input id="rotx" type="number" name="rotx" step="0.1" onchange="oeuvre.target.object3D.rotation.x = parseFloat(document.querySelector('#rotx').value)">
+                <label for="roty">Rotation Y </label>
+                <input id="roty" type="number" name="roty" step="0.1" onchange="oeuvre.target.object3D.rotation.y = parseFloat(document.querySelector('#roty').value)">
+                <label for="rotz">Rotation Z </label>
+                <input id="rotz" type="number" name="rotz" step="0.1" onchange="oeuvre.target.object3D.rotation.z = parseFloat(document.querySelector('#rotz').value)">
+                <br /><br />
+                <label for="scal">Scale</label>
+                <input id="scal" type="number" name="scalx" step="0.01" max="10" onchange="modifierScale(parseFloat(document.querySelector('#scal').value))">
+                <br /><br />
+                <input type="submit" value="Modifier">
+            </div>
+            
+        </section>
+
+    
+            <button type="button" id="next" class="btn btn-primary btn-lg next" aria-label="Choix des oeuvres de l'exposition">étape suivante</button>
 
     </div>
 </main>
 
-
+<input type="button" value="CREER EXPO" id="btnfinal">
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function(){
+
+            var clicks = 0;
+
+            $('#next').click(function() {
+                if (clicks == 0){
+                         $("#steps2").show();
+                         document.getElementById("steps2").scrollIntoView();
+                } else{
+                         $("#steps3").show();
+                         document.getElementById("steps3").scrollIntoView();
+                }
+                ++clicks;
+            });
+
+
+
+        });
+    </script>
+    
+
 </body>
 </html>

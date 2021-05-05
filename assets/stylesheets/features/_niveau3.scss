@@ -1,0 +1,53 @@
+.oeuvre {
+  padding: 15px;
+  background-color: #EFE7F7;
+  display: flex;
+
+  .oeuvre_img {
+    position: relative;
+    width: 33%;
+
+    img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .oeuvre_txt {
+    width: 66%;
+    padding-left: 15px;
+
+    .btn {
+      border-radius: 0;
+      background-color: #EC7070;
+      color: #fff;
+      border: none;
+      text-transform: uppercase;
+      font-size: 0.75em;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    textarea {
+      margin: 15px 0;
+      padding: 15px;
+      width: 100%;
+      border: 0;
+      resize: none;
+    }
+
+    h4 {
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+.truc {
+  background-color: #776F6F;
+  width: 100%;
+  height: 100%;
+}

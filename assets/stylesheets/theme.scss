@@ -7,11 +7,19 @@
 
 body {
   width: 100%;
-  padding: 20px 50px;
+  font-family: $font-roboto;
 }
 
 .pointer {
   cursor: pointer;
+}
+
+.round {
+  border-radius: 100%;
+}
+
+button:focus, a:focus {
+  outline: $blue solid 3px;
 }
 
 .no-btn {
@@ -52,8 +60,6 @@ h2.soustitle_create{
 
 
 .generation{
-
-
 
   .blc-gauche{
       background: white;

@@ -1,12 +1,14 @@
 .menuBurger {
   flex-direction: column;
   justify-content: space-around;
-  margin: $margin 0 0 $margin;
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
-  background-color: rgba($black, .9);
-  width: 50px; height: 50px;
+  margin: $margin 0 0 $margin;
   padding: 10px;
+  width: 50px; height: 50px;
+  border: 0;
+  background-color: rgba($black, .9);
+  @extend .pointer;
 
   .line {
     height: 2px;
@@ -24,20 +26,37 @@
     .line:nth-child(2) {
       transform: translateY(-8px) rotate(-45deg);
     }
+
+    &:focus {
+      outline: $blue solid 3px!important;
+    }
   }
+
+  &:focus {
+    outline: $red solid 3px!important;
+  }
+
 }
 
 #Menu {
   padding: $margin;
   position: absolute;
-  top: 0; bottom: 0; left: 0; right: 0;
-  background-color: rgba($black, .9);
+  top: 0; left: -100%;
+  background-color: $lightblack;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   a {
     color: $white;
     padding: 10px;
-    font-size: 20px;
+    font-size: 16px;
+
+    &:hover {
+      background-color:rgba($white, .05);
+    }
   }
 
   .row {
@@ -46,7 +65,17 @@
     border-bottom: 2px $white solid;
   }
 
+  &.active {
+    left: 0;
+  }
 
+  @include out-mobile {
+    width: 350px;
+  }
+
+  @include laptop {
+    bottom: 0;
+  }
 }
 
 .userMenu {
@@ -67,14 +96,9 @@
 
   li {
     padding: 10px 0;
-    width: 100%;
+    margin: 0 15px;
     background-color: transparent;
     display: flex;
-
-    :hover {
-      background-color: $white;
-      color: $black!important;
-    }
 
     a {
       width: 100%;
@@ -93,6 +117,7 @@
 
 .contactMenu {
   border-bottom: none!important;
+  padding: 15px 15px!important;
 
   div {
     display: flex;
@@ -122,6 +147,23 @@
   }
 }
 
+#blur {
+  background-color: rgba($white, 0.5);
+  backdrop-filter: blur(20px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  padding: 15px;
+  display: none;
+  justify-content: flex-end;
+
+  &.display {
+    display: flex;
+  }
+}
+
 .nbr_table {
   width: 0;
   height: 0;
@@ -131,3 +173,4 @@
   justify-content: center;
   align-items: center;
 }
+

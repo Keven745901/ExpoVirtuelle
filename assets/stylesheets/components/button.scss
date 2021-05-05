@@ -171,7 +171,7 @@
 
   input[type="checkbox"].chkgomme + label::before {
     content: url(../img/eraser.svg);
-    padding: 7px 7px;
+    padding: 13px 7px;
     background-color: #ffffff;
     border: 1px solid #000000;
     border-radius: 5px;
@@ -212,7 +212,6 @@
     background-color: #d2c9c9;
   }
 
-
   
   input[type="button"].btnvider {
     display: none;
@@ -220,7 +219,7 @@
 
 
   input[type="button"].btnvider + label::before {
-    content: url(../img/clear_2d.svg);
+    content: url(../img/clear_2d.png);
     padding: 7px 7px;
     background-color: #ffffff;
     border: 1px solid #000000;
